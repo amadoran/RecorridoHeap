@@ -36,7 +36,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>edu.espol.recorridoheap.App</mainClass>
+                    <mainClass>edu.espol.recorridoheap/edu.espol.recorridoheap.App</mainClass>
                 </configuration>
                 <executions>
                     <execution>

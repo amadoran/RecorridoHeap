@@ -15,8 +15,7 @@ import java.util.List;
  */
 public class Heap<T>{
     private T[] datos;
-    private int tamano;
-    
+    private int tamano;    
     private final Comparator<T> comp;
     
     public Heap(Comparator<T> comp){
