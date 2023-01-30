@@ -43,7 +43,7 @@ public class IndexController implements Initializable {
     @FXML
     private BorderPane borderPane;
     
-    private GraficaArbol1 graficaArbol;
+    private GraficaArbol graficaArbol;
 
 
     /**
@@ -51,7 +51,7 @@ public class IndexController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        graficaArbol = new GraficaArbol1();
+        graficaArbol = new GraficaArbol();
         borderPane.setCenter(graficaArbol);
         
         this.deshabilitarBotones(true);
@@ -68,10 +68,18 @@ public class IndexController implements Initializable {
     }
 
     @FXML
-    public void insertarHeap() {
+    public void insertarHeap() {    
         this.deshabilitarBotones(false);
         int insertar = Integer.parseInt(this.insertarField.getText());
+        Heap heap = graficaArbol.getHeap();
+        
+        if(heap.getAltura()> 2){
+            botonInsertar.setDisable(true);
+            return;
+        }
+        
         graficaArbol.anadirValorArbol(insertar);
+        
         graficaArbol.displayTree();
     }
     
@@ -85,5 +93,23 @@ public class IndexController implements Initializable {
         this.botonPreOrden.setDisable(habilitarse);
         this.botonEnOrden.setDisable(habilitarse);
         this.botonPostOrden.setDisable(habilitarse);
+    }
+    
+    @FXML
+    public void recorrerPreOrden(){
+        String recorrido = graficaArbol.getHeap().recorridoPreOrden();
+        this.recorridoField.setText(recorrido);
+    }
+    
+    @FXML
+    public void recorrerEnOrden(){
+        String recorrido = graficaArbol.getHeap().recorridoEnOrden();
+        this.recorridoField.setText(recorrido);
+    }
+    
+    @FXML
+    public void recorrerPostOrden(){
+        String recorrido = graficaArbol.getHeap().recorridoPostOrden();
+        this.recorridoField.setText(recorrido);
     }
 }

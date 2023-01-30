@@ -19,14 +19,14 @@ import javafx.scene.text.Text;
  *
  * @author amado
  */
-public final class GraficaArbol1 extends Pane {
+public final class GraficaArbol extends Pane {
     private Heap<Integer> heap;
     private double radius = 15;
     private double vGap = 50;
 
-    public GraficaArbol1() {
+    public GraficaArbol() {
         this.heap = new Heap<>((Integer i1, Integer i2) -> Integer.compare(i1, i2));
-        setStatus("Tree is empty");
+        setStatus("El árbol está vacío");
         setBackground(new Background(new BackgroundFill(Color.web("#" + "40E0D0"), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
@@ -62,5 +62,9 @@ public final class GraficaArbol1 extends Pane {
     public boolean anadirValorArbol(int valor){
         heap.offer(valor);
         return true;
+    }
+    
+    public Heap<Integer> getHeap(){
+        return this.heap;
     }
 }

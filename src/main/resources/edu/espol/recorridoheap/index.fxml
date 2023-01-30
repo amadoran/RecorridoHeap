@@ -34,9 +34,9 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="25.0" prefWidth="312.0" spacing="10.0">
                            <children>
-                              <Button fx:id="botonPreOrden" mnemonicParsing="false" text="Pre Orden" />
-                              <Button fx:id="botonEnOrden" mnemonicParsing="false" text="En Orden" />
-                              <Button fx:id="botonPostOrden" mnemonicParsing="false" text="Post Orden" />
+                              <Button fx:id="botonPreOrden" mnemonicParsing="false" onAction="#recorrerPreOrden" text="Pre Orden" />
+                              <Button fx:id="botonEnOrden" mnemonicParsing="false" onAction="#recorrerEnOrden" text="En Orden" />
+                              <Button fx:id="botonPostOrden" mnemonicParsing="false" onAction="#recorrerPostOrden" text="Post Orden" />
                            </children>
                         </HBox>
                      </children>
