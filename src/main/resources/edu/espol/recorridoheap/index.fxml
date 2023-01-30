@@ -7,13 +7,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.espol.recorridoheap.IndexController">
    <children>
-      <BorderPane layoutX="200.0" layoutY="100.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="borderPane" layoutX="6.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
          <top>
             <Label alignment="CENTER" prefHeight="49.0" prefWidth="190.0" text="Arbol Binario" BorderPane.alignment="CENTER">
                <font>
@@ -21,33 +20,31 @@
                </font>
             </Label>
          </top>
-         <center>
-            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-         </center>
          <bottom>
-            <HBox alignment="CENTER" prefHeight="115.0" prefWidth="600.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="117.0" prefWidth="600.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="312.0">
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="312.0" spacing="10.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="42.0" prefWidth="312.0" spacing="15.0">
+                        <Button fx:id="botonLimpiar" mnemonicParsing="false" onAction="#limpiarPantalla" text="Limpiar" />
+                        <HBox alignment="CENTER" prefHeight="25.0" prefWidth="312.0" spacing="15.0">
                            <children>
-                              <TextField prefHeight="25.0" prefWidth="152.0" />
-                              <Button mnemonicParsing="false" text="Insertar" />
+                              <TextField fx:id="insertarField" prefHeight="25.0" prefWidth="152.0" />
+                              <Button fx:id="botonInsertar" mnemonicParsing="false" onAction="#insertarHeap" text="Insertar" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="58.0" prefWidth="312.0" spacing="30.0">
+                        <HBox alignment="CENTER" prefHeight="25.0" prefWidth="312.0" spacing="10.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Pre Orden" />
-                              <Button mnemonicParsing="false" text="En Orden" />
-                              <Button mnemonicParsing="false" text="Post Orden" />
+                              <Button fx:id="botonPreOrden" mnemonicParsing="false" text="Pre Orden" />
+                              <Button fx:id="botonEnOrden" mnemonicParsing="false" text="En Orden" />
+                              <Button fx:id="botonPostOrden" mnemonicParsing="false" text="Post Orden" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="228.0">
+                  <VBox alignment="CENTER" prefHeight="117.0" prefWidth="228.0">
                      <children>
                         <Label text="Recorrido:" />
-                        <TextArea editable="false" prefHeight="75.0" prefWidth="228.0" />
+                        <TextArea fx:id="recorridoField" editable="false" prefHeight="75.0" prefWidth="228.0" />
                      </children>
                   </VBox>
                </children>
