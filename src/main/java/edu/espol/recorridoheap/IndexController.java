@@ -71,16 +71,15 @@ public class IndexController implements Initializable {
     public void insertarHeap() {    
         this.deshabilitarBotones(false);
         int insertar = Integer.parseInt(this.insertarField.getText());
-        Heap heap = graficaArbol.getHeap();
         
-        if(heap.getAltura()> 2){
-            botonInsertar.setDisable(true);
-            return;
-        }
-        
-        graficaArbol.anadirValorArbol(insertar);
+        Heap<Integer> heap = graficaArbol.getHeap();
+        heap.offer(insertar);
         
         graficaArbol.displayTree();
+        
+        if(heap.tamano() == 15){
+            botonInsertar.setDisable(true);
+        }
     }
     
     @FXML

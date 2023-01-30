@@ -59,11 +59,6 @@ public final class GraficaArbol extends Pane {
         getChildren().addAll(circle, new Text(x - 4, y + 4, heap.get(indice) + ""));
     }
     
-    public boolean anadirValorArbol(int valor){
-        heap.offer(valor);
-        return true;
-    }
-    
     public Heap<Integer> getHeap(){
         return this.heap;
     }

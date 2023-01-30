@@ -181,6 +181,8 @@ public class Heap<T> {
             sb.append(" - ");
         }
 
+        sb.delete(sb.length() - 2, sb.length());
+
         return sb.toString();
     }
 
@@ -191,52 +193,57 @@ public class Heap<T> {
         StringBuilder sb = new StringBuilder();
 
         while (buscador != null || !porRecorrer.isEmpty()) {
-            while (buscador != null){
+            while (buscador != null) {
                 porRecorrer.push(indice);
                 indice = indiceHijoIzquierdo(indice);
                 buscador = this.get(indice);
             }
-            
+
             indice = porRecorrer.pop();
             buscador = this.get(indice);
             sb.append(buscador);
             sb.append(" - ");
-            
+
             indice = indiceHijoDerecho(indice);
             buscador = this.get(indice);
         }
 
-        return sb.toString();
-    }
-    
-    public String recorridoPostOrden(){
-        Stack<Integer> s1 = new Stack<>();
-        Stack<T> s2 = new Stack<>();
-        StringBuilder sb = new StringBuilder();
-        
-        s1.push(0);
-        
-        while(!s1.isEmpty()){
-            
-            int tmp = s1.pop();
-            s2.push(this.get(tmp));
-            
-            if(this.get(indiceHijoIzquierdo(tmp)) != null){
-                s1.push(indiceHijoIzquierdo(tmp));
-            }
-            if(this.get(indiceHijoDerecho(tmp)) != null){
-                s1.push(indiceHijoDerecho(tmp));
-            }
-        }
-        
-        while (!s2.isEmpty()){
-            sb.append(s2.pop());
-            sb.append(" - ");
-        }
+        sb.delete(sb.length() - 2, sb.length());
+
         return sb.toString();
     }
 
-public T get(int indice) {
+    public String recorridoPostOrden() {
+        Stack<Integer> s1 = new Stack<>();
+        Stack<T> s2 = new Stack<>();
+        StringBuilder sb = new StringBuilder();
+
+        s1.push(0);
+
+        while (!s1.isEmpty()) {
+
+            int tmp = s1.pop();
+            s2.push(this.get(tmp));
+
+            if (this.get(indiceHijoIzquierdo(tmp)) != null) {
+                s1.push(indiceHijoIzquierdo(tmp));
+            }
+            if (this.get(indiceHijoDerecho(tmp)) != null) {
+                s1.push(indiceHijoDerecho(tmp));
+            }
+        }
+
+        while (!s2.isEmpty()) {
+            sb.append(s2.pop());
+            sb.append(" - ");
+        }
+
+        sb.delete(sb.length() - 2, sb.length());
+
+        return sb.toString();
+    }
+
+    public T get(int indice) {
         try {
             return this.datos[indice];
         } catch (IndexOutOfBoundsException e) {
