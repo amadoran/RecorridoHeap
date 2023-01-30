@@ -65,6 +65,9 @@ public class IndexController implements Initializable {
 
         insertarField.setTextFormatter(
                 new TextFormatter<>(new IntegerStringConverter(), 0, integerFilter));
+        //botonInsertar.set(keyEvent -> insertarHeap());
+
+
     }
 
     @FXML

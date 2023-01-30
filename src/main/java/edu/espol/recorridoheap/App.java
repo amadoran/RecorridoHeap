@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,6 +21,9 @@ public class App extends Application {
         scene = new Scene(loadFXML("index"), 600, 400);
         stage.setScene(scene);
         stage.show();
+
+        stage.getIcons().add(new Image(App.class.getResourceAsStream("arbolRecorrido.jpg")));
+        stage.setTitle("Recorrido de un arbol binario");
     }
 
     static void setRoot(String fxml) throws IOException {

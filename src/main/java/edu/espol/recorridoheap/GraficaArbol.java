@@ -26,8 +26,8 @@ public final class GraficaArbol extends Pane {
 
     public GraficaArbol() {
         this.heap = new Heap<>((Integer i1, Integer i2) -> Integer.compare(i1, i2));
-        setStatus("El árbol está vacío");
-        setBackground(new Background(new BackgroundFill(Color.web("#" + "40E0D0"), CornerRadii.EMPTY, Insets.EMPTY)));
+        setStatus("EL ARBOL SE ENCUENTRA SIN HOJAS");
+        setBackground(new Background(new BackgroundFill(Color.web("#" + "6495ED"), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
 
