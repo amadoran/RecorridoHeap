@@ -250,6 +250,15 @@ public class Heap<T> {
             return null;
         }
     }
+    
+    public boolean contains(T object){
+        for(int i = 0; i < tamano; i++){
+            if(datos[i].equals(object)){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public int getAltura() {
         return nivel + 1;

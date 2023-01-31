@@ -79,10 +79,19 @@ public class IndexController implements Initializable {
     @FXML
     public void insertarHeap() {
         if (this.insertarField.getText() != null) {
-            this.deshabilitarBotones(false);
             int insertar = Integer.parseInt(this.insertarField.getText());
-
             Heap<Integer> heap = graficaArbol.getHeap();
+            if (heap.contains(insertar)) {
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Info");
+                alert.setHeaderText("No se agregó el elemento");
+                alert.setContentText("El árbol ya contiene ese elemento, entonces no se puede se puede agregar");
+                alert.showAndWait();
+                return;
+            }
+
+            this.deshabilitarBotones(false);
+
             heap.offer(insertar);
 
             graficaArbol.displayTree();
@@ -110,8 +119,8 @@ public class IndexController implements Initializable {
         alert.setHeaderText("¿Estas seguro de limpiar la pantalla?");
         Optional<ButtonType> action = alert.showAndWait();
         ButtonType botonAplastado = action.orElse(ButtonType.CANCEL);
-        
-        if(botonAplastado.equals(ButtonType.OK)){
+
+        if (botonAplastado.equals(ButtonType.OK)) {
             App.setRoot("index");
         }
     }
