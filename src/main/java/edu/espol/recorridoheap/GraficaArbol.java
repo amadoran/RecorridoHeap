@@ -26,8 +26,8 @@ public final class GraficaArbol extends Pane {
 
     public GraficaArbol() {
         this.heap = new Heap<>((Integer i1, Integer i2) -> Integer.compare(i1, i2));
-        setStatus("EL ARBOL SE ENCUENTRA SIN HOJAS");
-        setBackground(new Background(new BackgroundFill(Color.web("#" + "6495ED"), CornerRadii.EMPTY, Insets.EMPTY)));
+        setStatus("No se ha creado el árbol");
+//        setBackground(new Background(new BackgroundFill(Color.web("#" + "6495ED"), CornerRadii.EMPTY, Insets.EMPTY)));
     }
 
 
@@ -56,7 +56,7 @@ public final class GraficaArbol extends Pane {
         Circle circle = new Circle(x, y, radius);
         circle.setFill(color);
         circle.setStroke(Color.BLACK);
-        getChildren().addAll(circle, new Text(x - 4, y + 4, heap.get(indice) + ""));
+        getChildren().addAll(circle, new Text(x - 5, y + 4, heap.get(indice) + ""));
     }
     
     public Heap<Integer> getHeap(){

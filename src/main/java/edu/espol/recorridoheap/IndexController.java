@@ -7,15 +7,20 @@ package edu.espol.recorridoheap;
 import edu.espol.recorridoheap.tda.Heap;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextFormatter.Change;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.util.converter.IntegerStringConverter;
 
@@ -42,9 +47,8 @@ public class IndexController implements Initializable {
     private TextArea recorridoField;
     @FXML
     private BorderPane borderPane;
-    
-    private GraficaArbol graficaArbol;
 
+    private GraficaArbol graficaArbol;
 
     /**
      * Initializes the controller class.
@@ -53,7 +57,7 @@ public class IndexController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         graficaArbol = new GraficaArbol();
         borderPane.setCenter(graficaArbol);
-        
+
         this.deshabilitarBotones(true);
         UnaryOperator<Change> integerFilter = change -> {
             String newText = change.getControlNewText();
@@ -65,29 +69,51 @@ public class IndexController implements Initializable {
 
         insertarField.setTextFormatter(
                 new TextFormatter<>(new IntegerStringConverter(), 0, integerFilter));
-        //botonInsertar.set(keyEvent -> insertarHeap());
-
-
+        insertarField.setOnKeyPressed(eh -> {
+            if (eh.getCode().equals(KeyCode.ENTER)) {
+                insertarHeap();
+            }
+        });
     }
 
     @FXML
-    public void insertarHeap() {    
-        this.deshabilitarBotones(false);
-        int insertar = Integer.parseInt(this.insertarField.getText());
-        
-        Heap<Integer> heap = graficaArbol.getHeap();
-        heap.offer(insertar);
-        
-        graficaArbol.displayTree();
-        
-        if(heap.tamano() == 15){
-            botonInsertar.setDisable(true);
+    public void insertarHeap() {
+        if (this.insertarField.getText() != null) {
+            this.deshabilitarBotones(false);
+            int insertar = Integer.parseInt(this.insertarField.getText());
+
+            Heap<Integer> heap = graficaArbol.getHeap();
+            heap.offer(insertar);
+
+            graficaArbol.displayTree();
+
+            if (heap.tamano() == 15) {
+                botonInsertar.setDisable(true);
+                insertarField.setOnKeyPressed(eh -> {
+                    if (eh.getCode().equals(KeyCode.ENTER)) {
+                        Alert alert = new Alert(AlertType.WARNING);
+                        alert.setHeaderText("Árbol lleno");
+                        alert.setTitle("Info");
+                        alert.setContentText("El árbol se encuentra lleno y no se pueden agregar más hijos");
+                        alert.showAndWait();
+                    }
+                });
+
+            }
         }
     }
-    
+
     @FXML
-    public void limpiarPantalla() throws IOException{
-        App.setRoot("index");
+    public void limpiarPantalla() throws IOException {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Limpiar Pantalla");
+        alert.setHeaderText("¿Estas seguro de limpiar la pantalla?");
+        Optional<ButtonType> action = alert.showAndWait();
+        ButtonType botonAplastado = action.orElse(ButtonType.CANCEL);
+        
+        if(botonAplastado.equals(ButtonType.OK)){
+            App.setRoot("index");
+        }
     }
 
     private void deshabilitarBotones(boolean habilitarse) {
@@ -96,21 +122,21 @@ public class IndexController implements Initializable {
         this.botonEnOrden.setDisable(habilitarse);
         this.botonPostOrden.setDisable(habilitarse);
     }
-    
+
     @FXML
-    public void recorrerPreOrden(){
+    public void recorrerPreOrden() {
         String recorrido = graficaArbol.getHeap().recorridoPreOrden();
         this.recorridoField.setText(recorrido);
     }
-    
+
     @FXML
-    public void recorrerEnOrden(){
+    public void recorrerEnOrden() {
         String recorrido = graficaArbol.getHeap().recorridoEnOrden();
         this.recorridoField.setText(recorrido);
     }
-    
+
     @FXML
-    public void recorrerPostOrden(){
+    public void recorrerPostOrden() {
         String recorrido = graficaArbol.getHeap().recorridoPostOrden();
         this.recorridoField.setText(recorrido);
     }
