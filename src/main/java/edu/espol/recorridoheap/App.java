@@ -20,6 +20,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("index"), 600, 400);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
 
         stage.getIcons().add(new Image(App.class.getResourceAsStream("arbolRecorrido.jpg")));
