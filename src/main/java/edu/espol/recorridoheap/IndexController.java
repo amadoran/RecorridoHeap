@@ -16,6 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
@@ -47,6 +48,8 @@ public class IndexController implements Initializable {
     private TextArea recorridoField;
     @FXML
     private BorderPane borderPane;
+    @FXML
+    private Label recorridoLabel;
 
     private GraficaArbol graficaArbol;
 
@@ -116,7 +119,7 @@ public class IndexController implements Initializable {
     public void limpiarPantalla() throws IOException {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Limpiar Pantalla");
-        alert.setHeaderText("¿Estas seguro de limpiar la pantalla?");
+        alert.setHeaderText("¿Estas seguro de eliminar el árbol y los recorridos?");
         Optional<ButtonType> action = alert.showAndWait();
         ButtonType botonAplastado = action.orElse(ButtonType.CANCEL);
 
@@ -134,19 +137,28 @@ public class IndexController implements Initializable {
 
     @FXML
     public void recorrerPreOrden() {
+        recorridoLabel.setText("Recorrido Pre Orden:");
         String recorrido = graficaArbol.getHeap().recorridoPreOrden();
         this.recorridoField.setText(recorrido);
     }
 
     @FXML
     public void recorrerEnOrden() {
+
+        recorridoLabel.setText("Recorrido En Orden:");
         String recorrido = graficaArbol.getHeap().recorridoEnOrden();
         this.recorridoField.setText(recorrido);
     }
 
     @FXML
     public void recorrerPostOrden() {
+        recorridoLabel.setText("Recorrido Post Orden:");
         String recorrido = graficaArbol.getHeap().recorridoPostOrden();
         this.recorridoField.setText(recorrido);
+    }
+    
+    @FXML
+    public void irPresentacion() throws IOException{
+        App.setRoot("presentacion");
     }
 }

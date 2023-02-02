@@ -21,8 +21,8 @@ import javafx.scene.text.Text;
  */
 public final class GraficaArbol extends Pane {
     private Heap<Integer> heap;
-    private double radius = 15;
-    private double vGap = 50;
+    private double radius = 30;
+    private double vGap = 75;
 
     public GraficaArbol() {
         this.heap = new Heap<>((Integer i1, Integer i2) -> Integer.compare(i1, i2));
